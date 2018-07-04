@@ -12,6 +12,7 @@ public class Tweet {
     public long uid; //database ID for the tweet
     public User user;
     public String createAt;
+    public String handleName;
 
     // deserialize the JSON
     public static Tweet fromJSON(JSONObject jsonObject) throws JSONException{
@@ -22,6 +23,7 @@ public class Tweet {
         tweet.uid = jsonObject.getLong("id");
         tweet.createAt = jsonObject.getString("created_at");
         tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
+        tweet.handleName = tweet.user.screenName;
         return tweet;
     }
 
