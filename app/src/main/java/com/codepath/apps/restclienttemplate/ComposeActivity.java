@@ -3,9 +3,12 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -23,6 +26,7 @@ public class ComposeActivity extends AppCompatActivity {
     private AsyncHttpResponseHandler handler;
     private EditText etUserTweet;
     private Tweet tweet;
+    private TextView characterCount;
 
 
     @Override
@@ -31,6 +35,9 @@ public class ComposeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_compose);
 
         etUserTweet = (EditText) findViewById(R.id.etUserTweet);
+        characterCount = (TextView) findViewById(R.id.tvCharacterCount);
+
+        etUserTweet.addTextChangedListener(mTextEditorWatcher);
 
         // create client
         client = TwitterApp.getRestClient(this);
@@ -67,4 +74,17 @@ public class ComposeActivity extends AppCompatActivity {
         Intent intent = new Intent(ComposeActivity.this, TimelineActivity.class);
         startActivity(intent);
     }
+
+    private final TextWatcher mTextEditorWatcher = new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //This sets a textview to the current length
+            characterCount.setText(String.valueOf(s.length()) + " /280 characters");
+        }
+
+        public void afterTextChanged(Editable s) {
+        }
+    };
 }

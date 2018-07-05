@@ -44,4 +44,14 @@
         android:text="X"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tvCharacterCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etUserTweet"
+        android:layout_marginStart="16dp"
+        android:text="0 out of 280 characters" />
+
 </RelativeLayout>
