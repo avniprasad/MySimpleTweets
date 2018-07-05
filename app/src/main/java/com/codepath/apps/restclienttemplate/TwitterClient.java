@@ -32,6 +32,8 @@ public class TwitterClient extends OAuthBaseClient {
 
 	public static final String COMPOSE_TWEET_ENDPOINT = "statuses/update.json";
 
+	public static final String FAVORITE_TWEET_ENDPOINT = "favorites/create.json";
+
 	public TwitterClient(Context context) {
 		super(context, REST_API_INSTANCE,
 				REST_URL,
@@ -40,7 +42,6 @@ public class TwitterClient extends OAuthBaseClient {
 				String.format(REST_CALLBACK_URL_TEMPLATE, context.getString(R.string.intent_host),
 						context.getString(R.string.intent_scheme), context.getPackageName(), FALLBACK_URL));
 	}
-	// CHANGE THIS
 	// DEFINE METHODS for different API endpoints here
 	public void getHomeTimeline(AsyncHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
@@ -57,6 +58,13 @@ public class TwitterClient extends OAuthBaseClient {
 		RequestParams params = new RequestParams();
 		params.put("status", message);
 		client.post(apiUrl, params, handler);
+	}
+
+	public void likeTweet(String id, AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl(FAVORITE_TWEET_ENDPOINT);
+		RequestParams params = new RequestParams();
+		params.put("id", id);
+		client.patch(apiUrl, params, handler);
 	}
 
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint

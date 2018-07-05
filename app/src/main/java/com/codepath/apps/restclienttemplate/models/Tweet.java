@@ -13,6 +13,8 @@ public class Tweet {
     public User user;
     public String createAt;
     public String handleName;
+    public String retweet_count;
+    public String like_count;
 
     // deserialize the JSON
     public static Tweet fromJSON(JSONObject jsonObject) throws JSONException{
@@ -24,7 +26,36 @@ public class Tweet {
         tweet.createAt = jsonObject.getString("created_at");
         tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
         tweet.handleName = tweet.user.screenName;
+        tweet.retweet_count  = jsonObject.getString("retweet_count");
+        tweet.like_count  = jsonObject.getString("favorite_count");
         return tweet;
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    public long getUid() {
+        return uid;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public String getCreateAt() {
+        return createAt;
+    }
+
+    public String getHandleName() {
+        return handleName;
+    }
+
+    public String getRetweet_count() {
+        return retweet_count;
+    }
+
+    public String getLike_count() {
+        return like_count;
+    }
 }

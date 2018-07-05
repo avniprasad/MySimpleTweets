@@ -1,9 +1,11 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
+
+import org.parceler.Parcels;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,9 +57,11 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         String date = getRelativeTimeAgo(tweet.createAt);
         holder.tvTimestamp.setText(date);
         holder.tvHandleName.setText("@" + tweet.handleName);
+        holder.tvRetweets.setText(tweet.retweet_count);
+        holder.tvLikes.setText(tweet.like_count);
 
         GlideApp.with(context)
-                .load(tweet.user.profileImageUrl)
+                .load(tweet.user.getProfileImageUrl())
                 .transform(new RoundedCornersTransformation(75, 0))
                 .into(holder.ivProfileImage);
     }
@@ -66,13 +72,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     }
 
     // create ViewHolder class
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView ivProfileImage;
         public TextView tvUsername;
         public TextView tvBody;
         public TextView tvHandleName;
         public TextView tvTimestamp;
+        public TextView tvRetweets;
+        public TextView tvLikes;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -83,6 +91,30 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
             tvHandleName = (TextView) itemView.findViewById(R.id.tvHandleName);
             tvTimestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
+            tvRetweets = (TextView) itemView.findViewById(R.id.tvRetweets);
+            tvLikes = (TextView) itemView.findViewById(R.id.tvLikes);
+
+            itemView.setOnClickListener(this);
+        }
+
+        // when the user clicks on a row, show TweetDetailViewActivity for the selected tweet
+        @Override
+        public void onClick(View view) {
+            // gets item position
+            Log.d("TweetAdapter", String.format("Something was clicked"));
+            int position = getAdapterPosition();
+            // make sure the position is valid, i.e. actually exists in the view
+            if (position != RecyclerView.NO_POSITION) {
+                // get the tweet at the position, this won't work if the class is static
+                Tweet tweet = mTweets.get(position);
+                Log.d("TweetAdapter", String.format("Got the tweet"));
+                // create intent for the next activity
+                Intent i = new Intent(context, TweetDetailViewActivity.class);
+                // serialize the tweet using parceler, use its short name as a key
+                i.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
+                // show the activity
+                context.startActivity(i);
+            }
         }
     }
 

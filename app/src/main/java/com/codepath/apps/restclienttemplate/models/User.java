@@ -11,7 +11,7 @@ public class User {
     public String name;
     public long uid;
     public String screenName;
-    public String profileImageUrl;
+    private String profileImageUrl;
 
     // deserialize the JSON
     public static User fromJSON(JSONObject json) throws JSONException{
@@ -24,5 +24,21 @@ public class User {
         user.profileImageUrl = json.getString("profile_image_url");
 
         return user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public long getUid() {
+        return uid;
+    }
+
+    public String getScreenName() {
+        return screenName;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 }

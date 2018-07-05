@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/ivExit"
         android:ems="10"
         android:hint="What's happening?"
         android:maxLength="280"
@@ -32,19 +32,6 @@
         tools:layout_editor_absoluteX="280dp"
         tools:layout_editor_absoluteY="116dp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="33dp"
-        android:layout_height="37dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="14dp"
-        android:background="@android:color/transparent"
-        android:onClick="exitTweet"
-        android:text="X"
-        android:textColor="@android:color/holo_blue_light"
-        android:textSize="24sp" />
-
     <TextView
         android:id="@+id/tvCharacterCount"
         android:layout_width="wrap_content"
@@ -53,5 +40,16 @@
         android:layout_below="@+id/etUserTweet"
         android:layout_marginStart="16dp"
         android:text="0 out of 280 characters" />
+
+    <ImageView
+        android:id="@+id/ivExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:onClick="exitTweet"
+        app:srcCompat="@drawable/ic_vector_close" />
 
 </RelativeLayout>
