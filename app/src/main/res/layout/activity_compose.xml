@@ -15,6 +15,7 @@
         android:ems="10"
         android:hint="What's happening?"
         android:maxLength="280"
+        android:textColorLink="@android:color/holo_blue_light"
         tools:layout_editor_absoluteX="30dp"
         tools:layout_editor_absoluteY="16dp" />
 

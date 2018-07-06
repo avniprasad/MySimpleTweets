@@ -145,6 +145,11 @@ public class TimelineActivity extends AppCompatActivity {
         // TODO -- fill this out
     }
 
+    public void like(View v) {
+        // TODO -- fill this out
+        // client.likeTweet(id, handler);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d("Tweet", "entered onActivity");

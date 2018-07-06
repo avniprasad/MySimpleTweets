@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -104,5 +105,22 @@ public class TweetDetailViewActivity extends AppCompatActivity {
         EditText etResponse = (EditText) findViewById(R.id.etResponse);
         String message = etResponse.getText().toString();
         client.sendTweet(message, handler);
+    }
+
+    public void retweet(View v) {
+        long id = tweet.getUid();
+        client.retweetTweet(id, handler);
+        Toast.makeText(this, "Retweeted", Toast.LENGTH_LONG).show();
+    }
+
+    public void like(View v) {
+        long id = tweet.getUid();
+        client.likeTweet(id, handler);
+        Toast.makeText(this, "Liked Tweet", Toast.LENGTH_LONG).show();
+    }
+
+    public void exitTweet(View v) {
+        Intent intent = new Intent(TweetDetailViewActivity.this, TimelineActivity.class);
+        startActivity(intent);
     }
 }
