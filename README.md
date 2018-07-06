@@ -20,21 +20,21 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-* [ ] User can **see a counter with total number of characters left for tweet** on compose tweet page
-* [ ] User can **pull down to refresh tweets timeline**
-* [ ] User is using **"Twitter branded" colors and styles**
+* [X] User can **see a counter with total number of characters left for tweet** on compose tweet page
+* [X] User can **pull down to refresh tweets timeline**
+* [X] User is using **"Twitter branded" colors and styles**
 * [ ] User sees an **indeterminate progress indicator** when any background or network task is happening
-* [ ] User can **select "reply" from detail view to respond to a tweet**
-  * [ ] User that wrote the original tweet is **automatically "@" replied in compose**
-* [ ] User can tap a tweet to **open a detailed tweet view**
-  * [ ] User can **take favorite (and unfavorite) or reweet** actions on a tweet
+* [X] User can **select "reply" from detail view to respond to a tweet**
+  * [X] User that wrote the original tweet is **automatically "@" replied in compose**
+* [X] User can tap a tweet to **open a detailed tweet view**
+  * [X] User can **take favorite (and unfavorite) or reweet** actions on a tweet
 * [ ] User can **see embedded image media within a tweet** on list or detail view.
 
 The following **bonus** features are implemented:
 
 * [ ] User can view more tweets as they scroll with infinite pagination
 * [ ] Compose tweet functionality is build using modal overlay
-* [ ] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.com/android/Using-Parceler).
+* [X] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.com/android/Using-Parceler).
 * [ ] Replace all icon drawables and other static image assets with [vector drawables](http://guides.codepath.com/android/Drawables#vector-drawables) where appropriate.
 * [ ] User can **click a link within a tweet body** on tweet details view. The click will launch the web browser with relevant page opened.
 * [ ] User can view following / followers list through any profile they view.
@@ -47,6 +47,7 @@ The following **bonus** features are implemented:
 The following **additional** features are implemented:
 
 * [ ] List anything else that you can get done to improve the app functionality!
+* [X] Retweeted and Liked tweets will show up at the top of timeline
 
 ## Video Walkthrough
 
@@ -60,6 +61,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
+I had difficulty in having the retweeted and liked tweets show up at the top of the timeline because orginally my intent was called in the Adapter class. I created an interface to allow the intent to be called in Timeline Activity. 
+
 ## Open-source libraries used
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
@@ -67,7 +70,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2018 Avni PRasad
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
