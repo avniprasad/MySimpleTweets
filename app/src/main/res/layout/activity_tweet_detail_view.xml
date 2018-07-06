@@ -96,4 +96,35 @@
         android:clickable="true"
         app:srcCompat="@drawable/ic_vector_heart_stroke" />
 
+    <EditText
+        android:id="@+id/etResponse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ibRetweet"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:hint="Tweet your reply"
+        android:clickable="true"
+        android:onClick="response"
+        android:maxLength="280"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/bReply"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/etResponse"
+        android:layout_marginEnd="21dp"
+        android:background="@drawable/compose_button"
+        android:onClick="reply"
+        android:text="Reply"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="116dp" />
+
 </RelativeLayout>

@@ -141,6 +141,10 @@ public class TimelineActivity extends AppCompatActivity {
         startActivityForResult(i, 0);
     }
 
+    public void retweet(View v) {
+        // TODO -- fill this out
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d("Tweet", "entered onActivity");
