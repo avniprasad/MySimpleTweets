@@ -1,7 +1,6 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -11,10 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
-
-import org.parceler.Parcels;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,12 +25,21 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
+    private final Handlers mHandler;
     private List<Tweet> mTweets;
     private Context context;
 
+    AsyncHttpResponseHandler handler = new JsonHttpResponseHandler();
+    TwitterClient client = TwitterApp.getRestClient(context);
+
+    interface Handlers {
+        void onItemClicked(Tweet t, Context c);
+    }
+
     // pass in the Tweets array in the constructor
-    public TweetAdapter(List<Tweet> tweets) {
+    public TweetAdapter(List<Tweet> tweets, Handlers handler) {
         mTweets = tweets;
+        mHandler = handler;
     }
 
     // for each row, inflate the layout and cache reference into ViewHolder
@@ -47,7 +56,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
     // bind the values based on the position of the element
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         // get the data according to position
         Tweet tweet = mTweets.get(position);
 
@@ -59,6 +68,22 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         holder.tvHandleName.setText("@" + tweet.handleName);
         holder.tvRetweets.setText(tweet.retweet_count);
         holder.tvLikes.setText(tweet.like_count);
+
+        holder.ibRetweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                client.retweetTweet(mTweets.get(position).getUid(), handler);
+                Toast.makeText(context, "Retweeted", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        holder.ibLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               client.likeTweet(mTweets.get(position).getUid(), handler);
+                Toast.makeText(context, "Liked Tweet", Toast.LENGTH_LONG).show();
+            }
+        });
 
         GlideApp.with(context)
                 .load(tweet.user.getProfileImageUrl())
@@ -95,6 +120,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         public TextView tvTimestamp;
         public TextView tvRetweets;
         public TextView tvLikes;
+        public ImageView ibRetweet;
+        public ImageView ibLike;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -107,6 +134,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvTimestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
             tvRetweets = (TextView) itemView.findViewById(R.id.tvRetweets);
             tvLikes = (TextView) itemView.findViewById(R.id.tvLikes);
+            ibRetweet = (ImageView) itemView.findViewById(R.id.ibRetweet);
+            ibLike = (ImageView) itemView.findViewById(R.id.iBLike);
 
             itemView.setOnClickListener(this);
         }
@@ -122,12 +151,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
                 // get the tweet at the position, this won't work if the class is static
                 Tweet tweet = mTweets.get(position);
                 Log.d("TweetAdapter", String.format("Got the tweet"));
-                // create intent for the next activity
-                Intent i = new Intent(context, TweetDetailViewActivity.class);
-                // serialize the tweet using parceler, use its short name as a key
-                i.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
-                // show the activity
-                context.startActivity(i);
+                mHandler.onItemClicked(tweet, context);
             }
         }
     }

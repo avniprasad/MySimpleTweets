@@ -146,4 +146,14 @@
         android:onClick="exitTweet"
         app:srcCompat="@drawable/ic_vector_close" />
 
+    <TextView
+        android:id="@+id/tvCharacterCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etResponse"
+        android:layout_marginLeft="10dp"
+        android:text="0 out of 280 characters"
+        android:textSize="13sp" />
+
 </RelativeLayout>

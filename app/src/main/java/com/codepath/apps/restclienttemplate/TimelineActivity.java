@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -64,7 +65,14 @@ public class TimelineActivity extends AppCompatActivity {
         // init the arraylist (data source)
         tweets = new ArrayList<>();
         // construct the adapter from this datasource
-        tweetAdapter = new TweetAdapter(tweets);
+        tweetAdapter = new TweetAdapter(tweets, new TweetAdapter.Handlers() {
+            @Override
+            public void onItemClicked(Tweet tweet, Context context) {
+                Intent i = new Intent(context, TweetDetailViewActivity.class);
+                i.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
+                startActivityForResult(i, 0);
+            }
+        });
         // RecyclerView setup (layout manager, use adapter)
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         // set the adapter
@@ -139,15 +147,6 @@ public class TimelineActivity extends AppCompatActivity {
     public void composeTweet(View v) {
         Intent i = new Intent(this, ComposeActivity.class);
         startActivityForResult(i, 0);
-    }
-
-    public void retweet(View v) {
-        // TODO -- fill this out
-    }
-
-    public void like(View v) {
-        // TODO -- fill this out
-        // client.likeTweet(id, handler);
     }
 
     @Override
