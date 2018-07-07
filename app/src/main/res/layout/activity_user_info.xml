@@ -10,8 +10,8 @@
         android:id="@+id/tvHandleName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvUserName"
         android:layout_below="@+id/tvUserName"
+        android:layout_centerHorizontal="true"
         android:text="TextView"
         android:textColor="@android:color/darker_gray"
         android:textSize="12dp" />
@@ -21,20 +21,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="124dp"
         android:text="TextView"
         android:textColor="#000"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/ivProfileImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         app:srcCompat="@android:color/black" />
 
@@ -42,19 +41,32 @@
         android:id="@+id/tvFollowers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ivProfileImage"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tvHandleName"
+        android:layout_centerHorizontal="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvFollowing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFollowers"
+        android:layout_centerHorizontal="true"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/tvLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvFollowers"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tvFollowing"
+        android:layout_centerHorizontal="true"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvTweets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLikes"
+        android:layout_centerHorizontal="true"
+        android:text="TextView" />
+
 </RelativeLayout>

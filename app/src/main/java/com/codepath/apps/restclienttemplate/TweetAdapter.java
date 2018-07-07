@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.parceler.Parcels;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -89,6 +92,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
                 .load(tweet.user.getProfileImageUrl())
                 .transform(new RoundedCornersTransformation(75, 0))
                 .into(holder.ivProfileImage);
+
+        holder.ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, UserInfoActivity.class);
+                i.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(mTweets.get(position)));
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -133,7 +145,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvHandleName = (TextView) itemView.findViewById(R.id.tvHandleName);
             tvTimestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
             tvRetweets = (TextView) itemView.findViewById(R.id.tvRetweets);
-            tvLikes = (TextView) itemView.findViewById(R.id.tvLikes);
+            tvLikes = (TextView) itemView.findViewById(R.id.tvFollowing);
             ibRetweet = (ImageView) itemView.findViewById(R.id.ibRetweet);
             ibLike = (ImageView) itemView.findViewById(R.id.iBLike);
 

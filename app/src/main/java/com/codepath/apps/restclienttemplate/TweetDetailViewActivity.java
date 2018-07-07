@@ -75,7 +75,7 @@ public class TweetDetailViewActivity extends AppCompatActivity {
         tvHandleName = (TextView) findViewById(R.id.tvHandleName);
         tvTimestamp = (TextView) findViewById(R.id.tvTimestamp);
         tvRetweets = (TextView) findViewById(R.id.tvRetweets);
-        tvLikes = (TextView) findViewById(R.id.tvLikes);
+        tvLikes = (TextView) findViewById(R.id.tvFollowing);
 
         // unwrap the tweet passed in via intent, using its simple name as a key
         tweet = (Tweet) Parcels.unwrap(getIntent().getParcelableExtra(Tweet.class.getSimpleName()));

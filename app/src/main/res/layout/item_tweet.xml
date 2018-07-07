@@ -65,7 +65,7 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/tvLikes"
+        android:id="@+id/tvFollowing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvBody"
