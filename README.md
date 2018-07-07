@@ -11,7 +11,7 @@ The following **required** functionality is completed:
 * [X]	User can **sign in to Twitter** using OAuth login
 * [X]	User can **view tweets from their home timeline**
   * [X] User is displayed the username, name, and body for each tweet
-  * [] User is displayed the [relative timestamp](https://gist.github.com/nesquena/f786232f5ef72f6e10a7) for each tweet "8m", "7h"
+  * [X] User is displayed the [relative timestamp](https://gist.github.com/nesquena/f786232f5ef72f6e10a7) for each tweet "8m", "7h"
 * [X] User can **compose and post a new tweet**
   * [X] User can click a “Compose” icon in the Action Bar on the top right
   * [X] User can then enter a new tweet and post this to twitter
@@ -46,8 +46,10 @@ The following **bonus** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
-* [X] Retweeted and Liked tweets will show up at the top of timeline
+* [X] List anything else that you can get done to improve the app functionality!
+  * [X] Retweeted and Liked tweets will show up at the top of timeline
+  * [X] Changed the toolbar design to fit Twitter's interface
+  * [X] Made a user profile for every tweet that can be view by clicking on profile picture
 
 ## Video Walkthrough
 
@@ -61,7 +63,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
-I had difficulty in having the retweeted and liked tweets show up at the top of the timeline because orginally my intent was called in the Adapter class. I created an interface to allow the intent to be called in Timeline Activity. 
+I had difficulty in having the retweeted and liked tweets show up at the top of the timeline because originally my intent was called in the Adapter class. I created an interface to allow the intent to be called in Timeline Activity.
 
 ## Open-source libraries used
 
@@ -70,7 +72,7 @@ I had difficulty in having the retweeted and liked tweets show up at the top of 
 
 ## License
 
-    Copyright 2018 Avni PRasad
+    Copyright 2018 Avni Prasad
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
